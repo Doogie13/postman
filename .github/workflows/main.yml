@@ -12,7 +12,10 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
-
+      
+      - name: Make Ubuntu Superuser
+        run: su #actions go brr
+        
       - name: Check out submodules
         uses: snickerbockers/submodules-init@v4
 
@@ -31,7 +34,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
       - name: Gradle build
-        run: sudo ./gradlew --build-cache build
+        run: ./gradlew --build-cache build
 
       - name: Archive artifact
         uses: actions/upload-artifact@v2
